@@ -1,0 +1,16 @@
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\bin\Debug\netcoreapp3.1\ODCDistributor.exe
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\bin\Debug\netcoreapp3.1\ODCDistributor.deps.json
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\bin\Debug\netcoreapp3.1\ODCDistributor.runtimeconfig.json
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\bin\Debug\netcoreapp3.1\ODCDistributor.runtimeconfig.dev.json
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\bin\Debug\netcoreapp3.1\ODCDistributor.dll
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\bin\Debug\netcoreapp3.1\ODCDistributor.pdb
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\bin\Debug\netcoreapp3.1\ODCKernal.dll
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\bin\Debug\netcoreapp3.1\ODCKernal.pdb
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\obj\Debug\netcoreapp3.1\ODCDistributor.csprojAssemblyReference.cache
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\obj\Debug\netcoreapp3.1\ODCDistributor.AssemblyInfoInputs.cache
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\obj\Debug\netcoreapp3.1\ODCDistributor.AssemblyInfo.cs
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\obj\Debug\netcoreapp3.1\ODCDistributor.csproj.CoreCompileInputs.cache
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\obj\Debug\netcoreapp3.1\ODCDistributor.csproj.CopyComplete
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\obj\Debug\netcoreapp3.1\ODCDistributor.dll
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\obj\Debug\netcoreapp3.1\ODCDistributor.pdb
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCDistributor\obj\Debug\netcoreapp3.1\ODCDistributor.genruntimeconfig.cache

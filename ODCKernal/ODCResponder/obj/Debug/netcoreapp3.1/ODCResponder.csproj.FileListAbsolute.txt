@@ -1,0 +1,16 @@
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\bin\Debug\netcoreapp3.1\ODCResponder.exe
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\bin\Debug\netcoreapp3.1\ODCResponder.deps.json
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\bin\Debug\netcoreapp3.1\ODCResponder.runtimeconfig.json
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\bin\Debug\netcoreapp3.1\ODCResponder.runtimeconfig.dev.json
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\bin\Debug\netcoreapp3.1\ODCResponder.dll
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\bin\Debug\netcoreapp3.1\ODCResponder.pdb
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\bin\Debug\netcoreapp3.1\ODCKernal.dll
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\bin\Debug\netcoreapp3.1\ODCKernal.pdb
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\obj\Debug\netcoreapp3.1\ODCResponder.csprojAssemblyReference.cache
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\obj\Debug\netcoreapp3.1\ODCResponder.AssemblyInfoInputs.cache
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\obj\Debug\netcoreapp3.1\ODCResponder.AssemblyInfo.cs
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\obj\Debug\netcoreapp3.1\ODCResponder.csproj.CoreCompileInputs.cache
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\obj\Debug\netcoreapp3.1\ODCResponder.csproj.CopyComplete
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\obj\Debug\netcoreapp3.1\ODCResponder.dll
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\obj\Debug\netcoreapp3.1\ODCResponder.pdb
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCResponder\obj\Debug\netcoreapp3.1\ODCResponder.genruntimeconfig.cache

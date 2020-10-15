@@ -1,0 +1,9 @@
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCKernal\bin\Debug\netcoreapp3.1\ODCKernal.deps.json
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCKernal\bin\Debug\netcoreapp3.1\ODCKernal.dll
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCKernal\bin\Debug\netcoreapp3.1\ODCKernal.pdb
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCKernal\obj\Debug\netcoreapp3.1\ODCKernal.csprojAssemblyReference.cache
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCKernal\obj\Debug\netcoreapp3.1\ODCKernal.AssemblyInfoInputs.cache
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCKernal\obj\Debug\netcoreapp3.1\ODCKernal.AssemblyInfo.cs
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCKernal\obj\Debug\netcoreapp3.1\ODCKernal.csproj.CoreCompileInputs.cache
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCKernal\obj\Debug\netcoreapp3.1\ODCKernal.dll
+C:\Users\Rowan\Documents\GitHub\nea\ODCKernal\ODCKernal\obj\Debug\netcoreapp3.1\ODCKernal.pdb
