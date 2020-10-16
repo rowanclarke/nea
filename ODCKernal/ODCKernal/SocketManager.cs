@@ -28,7 +28,9 @@ namespace SocketManager
             serverSocket.BeginAccept(new AsyncCallback(
                 ar =>
                 {
-                    serverSocket.EndAccept(ar);
+                    clientSocket = serverSocket.EndAccept(ar);
+                    
+                    Console.WriteLine("Accepted.");
                     tcs.SetResult(null);
                 } 
                 ), null);
@@ -39,11 +41,16 @@ namespace SocketManager
         public async Task<byte[]> Receive()
         {
             TaskCompletionSource<byte[]> tcs = new TaskCompletionSource<byte[]>();
-
-            serverSocket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(
+            Console.WriteLine("RECE1");
+            buffer = new byte[clientSocket.ReceiveBufferSize];
+            clientSocket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(
                 ar =>
                 {
-                    serverSocket.EndReceive(ar);
+                    
+                    Console.WriteLine("RECE2");
+                    clientSocket.EndReceive(ar);
+                    Console.WriteLine("RECE3");
+
                     tcs.SetResult(buffer);
                 }
                 ), null);
@@ -54,7 +61,7 @@ namespace SocketManager
         public async Task Send(byte[] bytes)
         {
             TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
-
+            
             serverSocket.BeginSend(bytes, 0, bytes.Length, SocketFlags.None, new AsyncCallback(
                 ar =>
                 {
@@ -103,7 +110,7 @@ namespace SocketManager
         public async Task<byte[]> Receive()
         {
             TaskCompletionSource<byte[]> tcs = new TaskCompletionSource<byte[]>();
-
+            buffer = new byte[clientSocket.ReceiveBufferSize];
             clientSocket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(
                 ar =>
                 {
