@@ -7,15 +7,20 @@ using System.Threading.Tasks;
 using SocketManager;
 namespace ODCResponder
 {
-    class Responder
-    {
-        
-        private ResponderSocketManager rsm;
 
+
+    class Program
+    {
         static void Main(string[] args)
         {
             new Responder(8080);
         }
+    }
+
+    class Responder
+    {
+
+        private ResponderSocketManager rsm;
 
         public Responder(int port)
         {
@@ -35,9 +40,9 @@ namespace ODCResponder
         public async void Send()
         {
             Console.WriteLine("Sending Message...");
-            
+
             Task se = rsm.Send(Encoding.UTF8.GetBytes("Hello"));
-            
+
             await se;
             Console.WriteLine("Sent");
         }

@@ -6,16 +6,17 @@ using SocketManager;
 
 namespace ODCDistributor
 {
-    
-    public class Distributor
+    public class Program
     {
-        private DistributorSocketManager dsm;
-
         static void Main(string[] args)
         {
             new Distributor(8080);
             Console.ReadKey();
         }
+    }
+    public class Distributor
+    {
+        private DistributorSocketManager dsm;
 
         public Distributor(int port)
         {
