@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ODCKernal\ODCKernal.csproj" />
+    <ProjectReference Include="..\ODCKernal\SocketManager.csproj" />
   </ItemGroup>
 
 </Project>
