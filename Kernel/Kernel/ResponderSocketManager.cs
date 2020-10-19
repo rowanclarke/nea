@@ -4,53 +4,45 @@ using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
-
-namespace SocketManager
+namespace ODC.SocketManager
 {
-    public class DistributorSocketManager
+
+    public class ResponderSocketManager
     {
-        private Socket serverSocket;
         private Socket clientSocket;
+
+        private int port;
 
         private byte[] buffer;
 
-        public DistributorSocketManager(int port) {
-            serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            serverSocket.Bind(new IPEndPoint(IPAddress.Any, port));
+        public ResponderSocketManager(int port)
+        {
+            clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            this.port = port;
+
         }
 
-        public async Task Listen() 
+        public async Task Connect()
         {
             TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
-            
-            
-            serverSocket.Listen(0);
-            serverSocket.BeginAccept(new AsyncCallback(
+            clientSocket.BeginConnect(new IPEndPoint(IPAddress.Loopback, port), new AsyncCallback(
                 ar =>
                 {
-                    clientSocket = serverSocket.EndAccept(ar);
-                    
-                    Console.WriteLine("Accepted.");
+                    clientSocket.EndConnect(ar);
                     tcs.SetResult(null);
-                } 
+                }
                 ), null);
             await tcs.Task;
         }
 
-
         public async Task<byte[]> Receive()
         {
             TaskCompletionSource<byte[]> tcs = new TaskCompletionSource<byte[]>();
-            Console.WriteLine("RECE1");
             buffer = new byte[clientSocket.ReceiveBufferSize];
             clientSocket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(
                 ar =>
                 {
-                    
-                    Console.WriteLine("RECE2");
                     clientSocket.EndReceive(ar);
-                    Console.WriteLine("RECE3");
-
                     tcs.SetResult(buffer);
                 }
                 ), null);
@@ -61,24 +53,17 @@ namespace SocketManager
         public async Task Send(byte[] bytes)
         {
             TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
-            
-            serverSocket.BeginSend(bytes, 0, bytes.Length, SocketFlags.None, new AsyncCallback(
+
+            clientSocket.BeginSend(bytes, 0, bytes.Length, SocketFlags.None, new AsyncCallback(
                 ar =>
                 {
-                    serverSocket.EndSend(ar);
+                    clientSocket.EndSend(ar);
                     tcs.SetResult(null);
                 }
                 ), null);
-
             await tcs.Task;
         }
 
-        // Start Listening
-
     }
-
-
-
-
 
 }

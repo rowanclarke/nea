@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using SocketManager;
+using ODC.SocketManager;
 
 
-namespace Distributor
+namespace ODC.Distributor
 {
 
     public class Distributor
@@ -15,12 +14,7 @@ namespace Distributor
 
         public Distributor(int port)
         {
-            dsm = new DistributorSocketManager(port);
-            Task l = Task.Run(Listen);
-            Task.Run(DoStuff);
-            l.Wait();
-            Task re = Task.Run(Receive);
-            Task.WaitAll(re);
+            dsm = new DistributorSocketManager(port);            
         }
 
         public async void DoStuff()
@@ -32,14 +26,17 @@ namespace Distributor
             }
         }
 
-        public async Task Listen()
+        public async void Listen()
+        {
+            dsm.Listen();    
+        }
+
+        public async Task Accept()
         {
             Console.WriteLine("Listening...");
-            Task h = dsm.Listen();
+            Task<Socket> h = dsm.Accept();
             await h;
-
             Console.WriteLine("Connected.");
-            
         }
 
         public async Task Receive()
@@ -48,7 +45,7 @@ namespace Distributor
             Task<byte[]> re = dsm.Receive();
             await re;
             Console.WriteLine("Received.");
-            Console.WriteLine(Encoding.UTF8.GetString(re.Result));
+            Console.WriteLine(Encoding.UTF8.GetString(re.Result).Trim('\0'));
         }
 
 

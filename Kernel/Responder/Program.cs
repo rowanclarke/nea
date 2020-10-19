@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Data;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using SocketManager;
 
-namespace Responder
+namespace ODC.Responder
 {
-
-
     class Program
     {
         static void Main(string[] args)
         {
-            new Responder(8080);
+            Responder responder = new Responder(8080);
+            Task.Run(responder.Connect).Wait();
+            responder.Send();
             Console.ReadKey();
         }
     }
