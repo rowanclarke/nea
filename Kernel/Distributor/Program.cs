@@ -2,7 +2,7 @@
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using ODC.SocketManager;
+using ODC.Connection.SocketManager;
 
 namespace ODC.Distributor
 {
@@ -10,13 +10,31 @@ namespace ODC.Distributor
     {
         static void Main(string[] args)
         {
-            Distributor distributor = new Distributor(8080);
-            distributor.Listen();
+            DistributorSocketManager dsm = new DistributorSocketManager(8080);
+            Console.WriteLine("Listening...");
+            dsm.Listen();
             while (true)
             {
-                Task h = Task.Run(distributor.Accept);
+                Console.WriteLine("Connecting...");
+                Task<Socket> h = Task.Run(dsm.Accept);
                 h.Wait();
-                Task.Run(distributor.Receive).Wait();
+
+                Console.WriteLine("Connected.");
+                Console.WriteLine("Receiving...");
+                byte[] buffer = new byte[1024];
+                Socket client = h.Result;
+                Console.WriteLine(client.Connected);
+                client.BeginReceive(buffer, 0, 1024, SocketFlags.None,
+                    new AsyncCallback(
+                        ar =>
+                        {
+                            client.EndReceive(ar);
+                            Console.WriteLine(Encoding.UTF8.GetString(buffer));
+                        }
+                    ), client
+                );
+                
+                
             }
         }
     }

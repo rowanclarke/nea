@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ODC.Connection.SocketManager;
 
 namespace ODC.Responder
 {
@@ -7,9 +8,11 @@ namespace ODC.Responder
     {
         static void Main(string[] args)
         {
-            Responder responder = new Responder(8080);
-            Task.Run(responder.Connect).Wait();
-            responder.Send();
+            Console.ReadKey();
+            ResponderSocketManager rsm = new ResponderSocketManager(8080);
+            Task co = Task.Run(rsm.Connnect);
+            co.Wait();
+            rsm.Send("Hello");
             Console.ReadKey();
         }
     }

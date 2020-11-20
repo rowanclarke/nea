@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Kernel\SocketManager.csproj" />
+    <ProjectReference Include="..\Kernel\Connection.csproj" />
   </ItemGroup>
 
 </Project>
