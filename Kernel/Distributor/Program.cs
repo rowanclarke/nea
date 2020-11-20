@@ -1,41 +1,27 @@
-﻿using System;
-using System.Net.Sockets;
-using System.Text;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
-using ODC.Connection.SocketManager;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
-namespace ODC.Distributor
+namespace Distributor
 {
     public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            DistributorSocketManager dsm = new DistributorSocketManager(8080);
-            Console.WriteLine("Listening...");
-            dsm.Listen();
-            while (true)
-            {
-                Console.WriteLine("Connecting...");
-                Task<Socket> h = Task.Run(dsm.Accept);
-                h.Wait();
-
-                Console.WriteLine("Connected.");
-                Console.WriteLine("Receiving...");
-                byte[] buffer = new byte[1024];
-                Socket client = h.Result;
-                Console.WriteLine(client.Connected);
-                client.BeginReceive(buffer, 0, 1024, SocketFlags.None,
-                    new AsyncCallback(
-                        ar =>
-                        {
-                            client.EndReceive(ar);
-                            Console.WriteLine(Encoding.UTF8.GetString(buffer));
-                        }
-                    ), client
-                );
-                
-                
-            }
+            CreateHostBuilder(args).Build().Run();
         }
+
+        // Additional configuration is required to successfully run gRPC on macOS.
+        // For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }

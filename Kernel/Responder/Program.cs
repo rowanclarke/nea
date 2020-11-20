@@ -1,20 +1,21 @@
 ﻿using System;
-using System.Threading.Tasks;
-using ODC.Connection.SocketManager;
-
-namespace ODC.Responder
+using Grpc.Net.Client;
+using Distributor;
+namespace Responder
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.ReadKey();
-            ResponderSocketManager rsm = new ResponderSocketManager(8080);
-            Task co = Task.Run(rsm.Connnect);
-            co.Wait();
-            rsm.Send("Hello");
+            var input = new HelloRequest { Name = "Rowan" };
+            var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            var client = new Greeter.GreeterClient(channel);
+
+            var reply = client.SayHello(input);
+
+            Console.WriteLine(reply.Message);
+
             Console.ReadKey();
         }
     }
-
 }
