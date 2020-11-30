@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ODC.TaskManager
+namespace TaskManager
 {
-    class Instance
+    class Node
     {
     }
 }
