@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
+		<OutputType>Exe</OutputType>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 	</PropertyGroup>
 
@@ -12,7 +13,5 @@
 		<ProjectReference Include="..\Connection\Connection.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Protobuf Include="..\Connection\Protos\greet.proto" GrpcServices="Server" />
-	</ItemGroup>
+	
 </Project>

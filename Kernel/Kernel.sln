@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager", "TaskManager\TaskManager.csproj", "{9D57CA06-A033-4F14-AADD-2BA72415D7D2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Responder", "Responder\Responder.csproj", "{784F8AD7-12D1-4408-B529-E015920A6337}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Worker", "Worker\Worker.csproj", "{784F8AD7-12D1-4408-B529-E015920A6337}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Distributor", "Distributor\Distributor.csproj", "{2D643C14-A60F-4992-BC3B-AA7908720337}"
 EndProject

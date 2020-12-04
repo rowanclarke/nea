@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Connection.WorkerInterface;
 using Grpc.Net.Client;
-using Responder;
+using Connection;
 
 namespace Distributor
 {
-    class Program
+    public class Program
     {
         static async Task Main(string[] args)
         {
