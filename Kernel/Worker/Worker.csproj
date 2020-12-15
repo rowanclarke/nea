@@ -11,6 +11,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Connection\Connection.csproj" />
+		<ProjectReference Include="..\TaskManager\TaskManager.csproj" />
 	</ItemGroup>
 
 	

@@ -14,8 +14,12 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\TaskManager\TaskManager.csproj" />
+    </ItemGroup>
+
 	<ItemGroup>
-		<Protobuf Include="Protos/greet.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\connection.proto" GrpcServices="Both" />
 	</ItemGroup>
 	
 </Project>
