@@ -4,6 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using Google.Protobuf;
 
 namespace Connection
 {
@@ -17,13 +21,26 @@ namespace Connection
 
         public override Task<Route> GetRouteSubgraph(RoutePackage request, ServerCallContext context)
         {
-            _logger.LogInformation("Calculating Route");
+            // Server (Worker) Side
             LocalWorker localWorker = new LocalWorker();
-            // Deserialise request.Data
-            TaskManager.Task.RoutePackage routePackage = new TaskManager.Task.RoutePackage(deserial);
-            TaskManager.Core.Route route = localWorker.GetRouteSubgraph(routePackage);
-            // Serialise route
-            return serial;
+
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            MemoryStream deserialStream = new MemoryStream();
+            request.Data.WriteTo(deserialStream);
+            deserialStream.Position = 0;
+            TaskManager.Task.RoutePackage package = (TaskManager.Task.RoutePackage) formatter.Deserialize(deserialStream);
+            deserialStream.Close();
+
+            TaskManager.Core.Route route = localWorker.GetRouteSubgraph(package);
+
+            MemoryStream serialStream = new MemoryStream();
+            formatter.Serialize(serialStream, route);
+            ByteString serial = ByteString.CopyFrom(serialStream.ToArray());
+            serialStream.Close();
+            Route result = new Route { Data = serial };
+
+            return Task.FromResult(result);
         }
 
     }

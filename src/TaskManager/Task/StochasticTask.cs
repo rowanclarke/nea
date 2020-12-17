@@ -8,8 +8,8 @@ namespace TaskManager.Task
         private AdjacencyMatrix matrix;
         private Node[] nodes;
         private int size;
-
         public Route route;
+        
         public double cost = double.PositiveInfinity;
 
         public StochasticTask(RoutePackage task)
@@ -18,26 +18,27 @@ namespace TaskManager.Task
             route = new Route(task.reference);
             nodes = task.reference;
             size = nodes.Length;
-            Console.WriteLine(route.ToString());
         }
 
         public void Run(int iters)
         {
-            for (int i = 0; i < iters; i++)
+            int i = 0;
+            while (i < iters)
             {
                 (int a, int b) c = route.Flip();
-                calculateCost();                
-                //Console.WriteLine($"{c.a}, {c.b} -> {route.cost}  \t  \t({cost})");
+                calculateCost();
                 if (route.cost < cost)
-                {
-                    //Console.WriteLine(route.cost + " < " + cost);
-                    //Console.WriteLine(route.ToString());
+                {   
                     cost = route.cost;
+                    Console.WriteLine(cost);
+                    i = 0;
                 }
                 else
                 {
                     route.Flip(c.a, c.b);
+                    route.cost = cost;
                 }
+                i++;
             }
         }
 

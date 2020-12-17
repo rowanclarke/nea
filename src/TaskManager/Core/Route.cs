@@ -9,7 +9,7 @@ namespace TaskManager.Core
     {
         public Node[] route;
         public double cost;
-        private Random random = new Random();
+        
 
         public Route(int size)
         {
@@ -18,6 +18,7 @@ namespace TaskManager.Core
 
         public Route(Node[] nodes)
         {
+            route = new Node[nodes.Length];
             for (int i = 0; i < nodes.Length; i++)
             {
                 route[i] = nodes[i];
@@ -56,6 +57,7 @@ namespace TaskManager.Core
 
         public int SelectRandom()
         {
+            Random random = new Random();
             return random.Next(route.Length);
         }
 
@@ -66,6 +68,7 @@ namespace TaskManager.Core
             {
                 sb.Append(route[i].index + " ");
             }
+            sb.Append("-> ").Append(cost);
             return sb.ToString();
         }
     }

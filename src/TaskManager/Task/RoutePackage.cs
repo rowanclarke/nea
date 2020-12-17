@@ -3,6 +3,7 @@ using TaskManager.Core;
 
 namespace TaskManager.Task
 {
+    [Serializable]
     public class RoutePackage
     {
         public AdjacencyMatrix matrix;

@@ -12,6 +12,7 @@ namespace Distributor
             TaskManager.Task.RoutePackage routePackage = new TaskManager.Task.RoutePackage(100);
             RemoteWorker worker = new RemoteWorker();
             TaskManager.Core.Route route = worker.GetRouteSubgraph(routePackage);
+            Console.WriteLine(route.ToString());
             Console.ReadKey();
         }
     }
