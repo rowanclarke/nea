@@ -8,18 +8,6 @@ service Worker {
 	rpc GetRouteSubgraph (RoutePackage) returns (Route);
 }
 
-message Node {
-	required bytes data = 1;
-}
-
-message Matrix {
-	required bytes data = 1;
-}
-
-message Nodes {
-	required bytes data = 1;
-}
-
 message Route {
 	required bytes data = 1;
 }

@@ -22,6 +22,7 @@ namespace Connection
         public override Task<Route> GetRouteSubgraph(RoutePackage request, ServerCallContext context)
         {
             // Server (Worker) Side
+
             LocalWorker localWorker = new LocalWorker();
 
             BinaryFormatter formatter = new BinaryFormatter();

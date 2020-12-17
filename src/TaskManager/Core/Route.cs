@@ -68,7 +68,7 @@ namespace TaskManager.Core
             {
                 sb.Append(route[i].index + " ");
             }
-            sb.Append("-> ").Append(cost);
+            sb.Append("\nCost: ").Append(cost);
             return sb.ToString();
         }
     }
