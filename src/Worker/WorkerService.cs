@@ -8,10 +8,12 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using Google.Protobuf;
+using Proto = Connection.Proto;
+using Connection.Core;
 
-namespace Connection
+namespace Worker
 {
-    public class WorkerService : Worker.WorkerBase
+    public class WorkerService : Proto.Worker.WorkerBase
     {
         private readonly ILogger<WorkerService> _logger;
         public WorkerService(ILogger<WorkerService> logger)
@@ -19,7 +21,7 @@ namespace Connection
             _logger = logger;
         }
 
-        public override Task<Route> GetRouteSubgraph(RoutePackage request, ServerCallContext context)
+        public override Task<Proto.Route> GetRouteSubgraph(Proto.RoutePackage request, ServerCallContext context)
         {
             // Server (Worker) Side
 
@@ -30,16 +32,16 @@ namespace Connection
             MemoryStream deserialStream = new MemoryStream();
             request.Data.WriteTo(deserialStream);
             deserialStream.Position = 0;
-            TaskManager.Task.RoutePackage package = (TaskManager.Task.RoutePackage) formatter.Deserialize(deserialStream);
+            var package = (RoutePackage) formatter.Deserialize(deserialStream);
             deserialStream.Close();
 
-            TaskManager.Core.Route route = localWorker.GetRouteSubgraph(package);
+            var route = localWorker.GetRouteSubgraph(package);
 
             MemoryStream serialStream = new MemoryStream();
             formatter.Serialize(serialStream, route);
             ByteString serial = ByteString.CopyFrom(serialStream.ToArray());
             serialStream.Close();
-            Route result = new Route { Data = serial };
+            var result = new Proto.Route { Data = serial };
 
             return Task.FromResult(result);
         }

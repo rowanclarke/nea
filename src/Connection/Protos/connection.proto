@@ -1,6 +1,6 @@
 syntax = "proto2";
 
-option csharp_namespace = "Connection";
+option csharp_namespace = "Connection.Proto";
 
 package proto;
 

@@ -4,6 +4,6 @@ namespace Connection
 {
     public interface IWorker
     {
-        public TaskManager.Core.Route GetRouteSubgraph(TaskManager.Task.RoutePackage task);
+        public Core.Route GetRouteSubgraph(Core.RoutePackage task);
     }
 }

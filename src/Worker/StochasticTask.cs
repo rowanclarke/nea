@@ -1,7 +1,7 @@
 ﻿using System;
-using TaskManager.Core;
+using Connection.Core;
 
-namespace TaskManager.Task
+namespace Worker
 {
     public class StochasticTask
     {

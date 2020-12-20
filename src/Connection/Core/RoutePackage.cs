@@ -1,7 +1,6 @@
 ﻿using System;
-using TaskManager.Core;
 
-namespace TaskManager.Task
+namespace Connection.Core
 {
     [Serializable]
     public class RoutePackage
