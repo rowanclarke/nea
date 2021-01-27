@@ -2,7 +2,7 @@
 using System.Text;
 
 
-namespace TaskManager.Core
+namespace Connection.Core
 {
     [Serializable]
     public class Route

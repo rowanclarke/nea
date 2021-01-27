@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TaskManager.Core
+namespace Connection.Core
 {
     [Serializable]
     public enum Type

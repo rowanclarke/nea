@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Grpc.Net.Client;
+using Connection.Core;
 using Connection;
 
 namespace Distributor
@@ -9,9 +10,9 @@ namespace Distributor
     {
         static void Main(string[] args)
         {
-            TaskManager.Task.RoutePackage routePackage = new TaskManager.Task.RoutePackage(100);
+            RoutePackage routePackage = new RoutePackage(100);
             RemoteWorker worker = new RemoteWorker();
-            TaskManager.Core.Route route = worker.GetRouteSubgraph(routePackage);
+            Route route = worker.GetRouteSubgraph(routePackage);
             Console.WriteLine(route.ToString());
             Console.ReadKey();
         }
