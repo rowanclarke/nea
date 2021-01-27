@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Distributor", "Distributor\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connection", "Connection\Connection.csproj", "{48552BF6-3EA1-408C-9DEA-3E38F9BA9FF5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebInterface", "WebInterface\WebInterface.csproj", "{2F74F2AA-C65A-432F-9FC5-051D14A355FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{48552BF6-3EA1-408C-9DEA-3E38F9BA9FF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48552BF6-3EA1-408C-9DEA-3E38F9BA9FF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48552BF6-3EA1-408C-9DEA-3E38F9BA9FF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F74F2AA-C65A-432F-9FC5-051D14A355FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F74F2AA-C65A-432F-9FC5-051D14A355FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F74F2AA-C65A-432F-9FC5-051D14A355FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F74F2AA-C65A-432F-9FC5-051D14A355FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

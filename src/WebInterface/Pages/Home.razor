@@ -1,0 +1,49 @@
+﻿@page "/"
+@using System.Drawing
+@using BlazorLeaflet
+@using BlazorLeaflet.Models
+@using BlazorLeaflet.Models.Events
+@inject IJSRuntime jsRuntime
+
+<div class="my-map">
+    <LeafletMap Map="_map" />
+</div>
+
+<button id="submit" class="btn btn-success">Submit</button>
+
+@code
+{ private Map _map;
+
+    private Circle _circle;
+
+    protected override void OnInitialized()
+    {
+        _map = new Map(jsRuntime)
+        {
+            Center = new LatLng(51.509865f, -0.118092f),
+            Zoom = 5f
+        };
+
+        _map.OnInitialized += () =>
+        {
+            _map.AddLayer(new TileLayer
+            {
+                UrlTemplate = "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                Attribution = "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors",
+            });
+
+        };
+
+        _map.OnClick += (Map map, MouseEvent e) =>
+        {
+            var marker = new Marker(e.LatLng.Lat, e.LatLng.Lng);
+            marker.Tooltip = new Tooltip { Content = "This is a nice location!" };
+            marker.Icon = new Icon { Url = "images/redpin.png", Size = new Size(14, 20), Anchor = new Point(7, 18)};
+
+            // Add it to the layers collection
+            _map.AddLayer(marker);
+        };
+    }
+
+
+}
