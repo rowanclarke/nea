@@ -5,14 +5,24 @@
 @using BlazorLeaflet.Models.Events
 @inject IJSRuntime jsRuntime
 
-<div class="my-map">
-    <LeafletMap Map="_map" />
+<div class="my-content">
+    <input id="type" type="checkbox" class="toggle z-front" @bind-value="type">
+
+    <button id="submit" class="btn btn-success z-front">Submit</button>
+
+    <div class="my-map">
+        <LeafletMap Map="_map" />
+    </div>
+
 </div>
 
-<button id="submit" class="btn btn-success">Submit</button>
+
+
 
 @code
-{ private Map _map;
+{ 
+    private Map _map;
+    private bool type;
 
     private Circle _circle;
 
@@ -36,13 +46,17 @@
 
         _map.OnClick += (Map map, MouseEvent e) =>
         {
+
             var marker = new Marker(e.LatLng.Lat, e.LatLng.Lng);
-            marker.Tooltip = new Tooltip { Content = "This is a nice location!" };
-            marker.Icon = new Icon { Url = "images/redpin.png", Size = new Size(14, 20), Anchor = new Point(7, 18)};
+            marker.Icon = new Icon { Url = (type) ? "images/redpin.svg" : "images/bluepin.svg", Size = new Size(27, 32), Anchor = new Point(27 / 2, 32)};
 
             // Add it to the layers collection
             _map.AddLayer(marker);
         };
+
+
+
+
     }
 
 

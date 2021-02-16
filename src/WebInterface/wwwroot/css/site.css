@@ -26,6 +26,50 @@ app {
     align-items: center;
 }
 
+.toggle {
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    margin: 10px;
+}
+
+    .toggle:after {
+        content: '';
+        width: 60px;
+        height: 70px;
+        display: inline-block;
+        background: #FFF;
+        background-image: url(../images/bluepin.svg);
+        background-repeat: no-repeat;
+        background-size: 54px 64px;
+        background-position: center;
+        border-radius: 3px;
+        clear: both;
+    }
+
+
+/* Background color when toggle button will be active */
+.toggle:checked:after {
+    background: #FFF;
+    background-image: url(../images/redpin.svg);
+    background-repeat: no-repeat;
+    background-size: 54px 64px;
+    background-position: center;
+}
+
+/* Transition for smoothness */
+.toggle,
+.toggle:after,
+.toggle:checked:after {
+    transition: ease .3s;
+    -webkit-transition: ease .3s;
+    -moz-transition: ease .3s;
+    -o-transition: ease .3s;
+}
+
 .main {
     flex: 1;
 }
@@ -66,10 +110,23 @@ app {
     font-size: 10px;
 }
 
-.my-map {
+.my-content {
     width: 100vw;
     height: 100vh;
-    z-index: 1;
+}
+
+.my-map {
+    width: inherit;
+    height: inherit;
+}
+
+.z-front {
+    z-index: 401;
+}
+
+#type {
+    position: absolute;
+    right: 0px;
 }
 
 #submit {
@@ -77,7 +134,6 @@ app {
     width: 80px;
     height: 40px;
     bottom: 20px;
-    z-index: 2;
 }
 
 .sidebar {
@@ -184,7 +240,7 @@ app {
         margin-left: 0;
     }
 
-    .my-map {
+    .my-content {
         height: calc(100vh - 3.5rem);
     }
 
@@ -224,7 +280,7 @@ app {
         display: block;
     }
 
-    .my-map {
+    .my-content {
         width: calc(100vw - 250px);
     }
 
