@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+option csharp_namespace = "Connection.Proto.Worker";
+
+package proto;
+
+service Worker {
+	rpc GetRouteSubgraph (RoutePackage) returns (Route);
+}
+
+message Route {
+	required bytes data = 1;
+}
+
+message RoutePackage {
+	required bytes data = 1;
+}
+

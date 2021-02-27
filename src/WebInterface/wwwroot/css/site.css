@@ -29,7 +29,7 @@ app {
 .toggle {
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
-
+    background: rgba(255, 255, 255, 0.00);
     border: 0;
     outline: 0;
     cursor: pointer;
@@ -41,7 +41,6 @@ app {
         width: 60px;
         height: 70px;
         display: inline-block;
-        background: #FFF;
         background-image: url(../images/bluepin.svg);
         background-repeat: no-repeat;
         background-size: 54px 64px;
@@ -53,7 +52,6 @@ app {
 
 /* Background color when toggle button will be active */
 .toggle:checked:after {
-    background: #FFF;
     background-image: url(../images/redpin.svg);
     background-repeat: no-repeat;
     background-size: 54px 64px;

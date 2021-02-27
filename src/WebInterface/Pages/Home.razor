@@ -8,7 +8,7 @@
 <div class="my-content">
     <input id="type" type="checkbox" class="toggle z-front" @bind-value="type">
 
-    <button id="submit" class="btn btn-success z-front">Submit</button>
+    <button id="submit" class="btn btn-success z-front" @onclick="Submit">Submit</button>
 
     <div class="my-map">
         <LeafletMap Map="_map" />
@@ -17,14 +17,22 @@
 </div>
 
 
-
-
 @code
 { 
     private Map _map;
     private bool type;
 
-    private Circle _circle;
+
+    protected void Submit()
+    {
+        var channel = GrpcChannel.ForAddress("https://localhost:5001");
+
+        RemoteDistributor distributor = new RemoteDistributor();
+
+        Core.RoutePackage task = new Core.RoutePackage(100);
+
+        distributor.GetRoute(task);
+    }
 
     protected override void OnInitialized()
     {
@@ -48,6 +56,11 @@
         {
 
             var marker = new Marker(e.LatLng.Lat, e.LatLng.Lng);
+            marker.RiseOnHover = true;
+            marker.OnDblClick += (InteractiveLayer _, MouseEvent __) =>
+            {
+                _map.RemoveLayer(marker);
+            };
             marker.Icon = new Icon { Url = (type) ? "images/redpin.svg" : "images/bluepin.svg", Size = new Size(27, 32), Anchor = new Point(27 / 2, 32)};
 
             // Add it to the layers collection

@@ -1,9 +1,6 @@
 ﻿<div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand my-title my-greek" href="">Οδύσσεια</a>
-    <!--<span class="my-subtitle my-greek">Οδύσσεια</span>-->
-    <button class="btn btn-info btn-sm my-down">
-        <span class="oi oi-data-transfer-download"></span> Download
-    </button>
+    
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -14,6 +11,11 @@
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="download">
+                <span class="oi oi-cloud-download" aria-hidden="true"></span> Download
             </NavLink>
         </li>
         <li class="nav-item px-3">

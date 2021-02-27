@@ -18,24 +18,13 @@ namespace Connection
             // Client (Distributor) Side
 
             var channel = GrpcChannel.ForAddress("https://localhost:5001");
-            var client = new Proto.Worker.WorkerClient(channel);
+            var client = new Proto.Worker.Worker.WorkerClient(channel);
 
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            MemoryStream serialStream = new MemoryStream();
-            formatter.Serialize(serialStream, task);
-            ByteString serial = ByteString.CopyFrom(serialStream.ToArray());
-            serialStream.Close();
-            Proto.RoutePackage package = new Proto.RoutePackage { Data = serial }; 
+            Proto.Worker.RoutePackage package = new Proto.Worker.RoutePackage { Data = Serialiser.Serialise(task) }; 
             
             var result = client.GetRouteSubgraph(package);
-
-            MemoryStream deserialStream = new MemoryStream();
-            result.Data.WriteTo(deserialStream);
-            deserialStream.Position = 0;
-            Core.Route route = (Core.Route) formatter.Deserialize(deserialStream);
-            deserialStream.Close();
-            return route;
+            
+            return (Core.Route) Serialiser.Deserialise(result.Data);
         }
     }
 }
