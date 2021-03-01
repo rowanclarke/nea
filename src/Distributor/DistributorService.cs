@@ -18,11 +18,11 @@ namespace Distributor
             _logger = logger;
         }
 
-        public override Task<Proto.Route> GetRoute(Proto.RoutePackage request, ServerCallContext context)
+        public override Task<Proto.Route> GetGeoRoute(Proto.RoutePackage request, ServerCallContext context)
         {
             LocalDistributor localWorker = new LocalDistributor();
 
-            var route = localWorker.GetRoute((Core.RoutePackage) Serialiser.Deserialise(request.Data));
+            var route = localWorker.GetGeoRoute((Core.RoutePackage) Serialiser.Deserialise(request.Data));
 
             var result = new Proto.Route { Data = Serialiser.Serialise(route) };
 

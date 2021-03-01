@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Connection.Core
 {
@@ -22,6 +23,21 @@ namespace Connection.Core
             {
                 reference[i] = new Node(i);
             }
+        }
+
+        public string Locations()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            for (int i = 0; i < reference.Length-1; i++)
+            {
+                sb.Append("[").Append(reference[i].coord.longitude);
+                sb.Append(",").Append(reference[i].coord.latitude).Append("],");
+            }
+            sb.Append("[").Append(reference[reference.Length-1].coord.longitude);
+            sb.Append(",").Append(reference[reference.Length - 1].coord.latitude).Append("]");
+            sb.Append("]");
+            return sb.ToString();
         }
 
     }

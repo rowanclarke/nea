@@ -1,16 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Connection.Core
 {
     [Serializable]
     public class AdjacencyMatrix
     {
-        private double[,] matrix;
+        public double[,] matrix;
 
         public double this[int a, int b]
         {
             get => matrix[a, b];
             set => matrix[a, b] = value;
+        }
+
+        public AdjacencyMatrix(List<List<double>> lists) 
+        {
+            matrix = new double[lists.Count, lists[0].Count];
+            
+            for (int i = 0; i < lists.Count; i++)
+            {
+                for (int j = 0; j < lists[0].Count; j++)
+                {
+                    matrix[i, j] = lists[i][j];
+                }
+            }
         }
 
         public AdjacencyMatrix(double[,] matrix)
