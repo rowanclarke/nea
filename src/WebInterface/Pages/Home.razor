@@ -30,8 +30,22 @@
         RemoteDistributor distributor = new RemoteDistributor();
 
         Core.RoutePackage routePackage = new Core.RoutePackage(null, nodes.ToArray());
+        Core.GeoRoute geoRoute = distributor.GetGeoRoute(routePackage);
 
-        distributor.GetGeoRoute(routePackage);
+        Polyline polyline = new Polyline();
+        int length = geoRoute.geometry.GetLength(0);
+
+        polyline.Shape = new PointF[1][];
+
+        polyline.Shape[0] = new PointF[length];
+        
+        for (int i = 0; i < length; i++)
+        {
+            polyline.Shape[0][i] = new PointF(geoRoute.geometry[i, 1], geoRoute.geometry[i, 0]);
+        }
+
+        _map.AddLayer(polyline);
+        
     }
 
     protected override void OnInitialized()

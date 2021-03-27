@@ -6,35 +6,22 @@ namespace Connection.Core
     [Serializable]
     public class AdjacencyMatrix
     {
-        public double[,] matrix;
+        public float[,] matrix;
 
-        public double this[int a, int b]
+        public float this[int a, int b]
         {
             get => matrix[a, b];
             set => matrix[a, b] = value;
         }
 
-        public AdjacencyMatrix(List<List<double>> lists) 
-        {
-            matrix = new double[lists.Count, lists[0].Count];
-            
-            for (int i = 0; i < lists.Count; i++)
-            {
-                for (int j = 0; j < lists[0].Count; j++)
-                {
-                    matrix[i, j] = lists[i][j];
-                }
-            }
-        }
-
-        public AdjacencyMatrix(double[,] matrix)
+        public AdjacencyMatrix(float[,] matrix)
         {
             this.matrix = matrix;
         }
 
         public AdjacencyMatrix(int size)
         {
-            matrix = new double[size, size];
+            matrix = new float[size, size];
             Randomise(size);
         }
 

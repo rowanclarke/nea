@@ -13,7 +13,7 @@ namespace Connection
 {
     public class RemoteDistributor : IDistributor
     {
-        public Core.Route GetGeoRoute(Core.RoutePackage task)
+        public Core.GeoRoute GetGeoRoute(Core.RoutePackage task)
         {
             // Client (WebInterface) Side
 
@@ -24,7 +24,7 @@ namespace Connection
             
             var result = client.GetGeoRoute(package);
 
-            return (Core.Route) Serialiser.Deserialise(result.Data);
+            return (Core.GeoRoute) Serialiser.Deserialise(result.Data);
         }
     }
 }

@@ -4,6 +4,8 @@ namespace Connection
 {
     public interface IDistributor
     {
-        public Core.Route GetGeoRoute(Core.RoutePackage task);
+        // public Core.Route GetRoute(Core.RoutePackage task);
+
+        public Core.GeoRoute GetGeoRoute(Core.RoutePackage task);
     }
 }

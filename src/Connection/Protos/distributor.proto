@@ -5,10 +5,10 @@ option csharp_namespace = "Connection.Proto.Distributor";
 package proto;
 
 service Distributor {
-	rpc GetGeoRoute (RoutePackage) returns (Route);
+	rpc GetGeoRoute (RoutePackage) returns (GeoRoute);
 }
 
-message Route {
+message GeoRoute {
 	required bytes data = 1;
 }
 

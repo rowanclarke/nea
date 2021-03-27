@@ -6,7 +6,6 @@ namespace Worker
     public class StochasticTask
     {
         private AdjacencyMatrix matrix;
-        private Node[] nodes;
         private int size;
         public Route route;
         
@@ -15,9 +14,8 @@ namespace Worker
         public StochasticTask(RoutePackage task)
         {
             matrix = task.matrix;
-            route = new Route(task.reference);
-            nodes = task.reference;
-            size = nodes.Length;
+            route = task.reference;
+            size = route.nodes.Length;
         }
 
         public void Run(int iters)
@@ -25,7 +23,7 @@ namespace Worker
             int i = 0;
             while (i < iters)
             {
-                (int a, int b) c = route.Flip();
+                (int a, int b) = route.Flip();
                 calculateCost();
                 if (route.cost < cost)
                 {   
@@ -35,7 +33,7 @@ namespace Worker
                 }
                 else
                 {
-                    route.Flip(c.a, c.b);
+                    route.Flip(a, b);
                     route.cost = cost;
                 }
                 i++;

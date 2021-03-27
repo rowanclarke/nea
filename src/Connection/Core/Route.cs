@@ -7,36 +7,31 @@ namespace Connection.Core
     [Serializable]
     public class Route
     {
-        public Node[] route;
+        public Node[] nodes;
         public double cost;
         
-
         public Route(int size)
         {
-            route = new Node[size];
+            nodes = new Node[size];
         }
 
         public Route(Node[] nodes)
         {
-            route = new Node[nodes.Length];
-            for (int i = 0; i < nodes.Length; i++)
-            {
-                route[i] = nodes[i];
-            }
+            this.nodes = nodes;
             Shuffle();
         }
 
         public Node this[int a]
         {
-            get => route[a];
-            set => route[a] = value;
+            get => nodes[a];
+            set => nodes[a] = value;
         }
 
         public void Flip(int a, int b)
         {
-            Node tmp = route[a];
-            route[a] = route[b];
-            route[b] = tmp;
+            Node tmp = nodes[a];
+            nodes[a] = nodes[b];
+            nodes[b] = tmp;
         }
 
         public (int a, int b) Flip()
@@ -49,7 +44,7 @@ namespace Connection.Core
 
         public void Shuffle()
         {
-            for (int i = 0; i < 2 * route.Length; i++)
+            for (int i = 0; i < 2 * nodes.Length; i++)
             {
                 Flip();
             }
@@ -58,17 +53,32 @@ namespace Connection.Core
         public int SelectRandom()
         {
             Random random = new Random();
-            return random.Next(route.Length);
+            return random.Next(nodes.Length);
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < route.Length; i++)
+            for (int i = 0; i < nodes.Length; i++)
             {
-                sb.Append(route[i].index + " ");
+                sb.Append(nodes[i].index + " ");
             }
             sb.Append("\nCost: ").Append(cost);
+            return sb.ToString();
+        }
+
+        public string Locations()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            for (int i = 0; i < nodes.Length - 1; i++)
+            {
+                sb.Append("[").Append(nodes[i].coord.longitude);
+                sb.Append(",").Append(nodes[i].coord.latitude).Append("],");
+            }
+            sb.Append("[").Append(nodes[^1].coord.longitude);
+            sb.Append(",").Append(nodes[^1].coord.latitude).Append("]");
+            sb.Append("]");
             return sb.ToString();
         }
     }

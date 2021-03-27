@@ -12,10 +12,10 @@ namespace Connection.Core
     [Serializable]
     public class Coordinate
     {
-        public double longitude;
-        public double latitude;
+        public float longitude;
+        public float latitude;
 
-        public Coordinate(double longitude, double latitude)
+        public Coordinate(float longitude, float latitude)
         {
             this.longitude = longitude;
             this.latitude = latitude;
