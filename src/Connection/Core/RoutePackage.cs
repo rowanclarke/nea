@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Connection.Core
 {
@@ -6,23 +7,20 @@ namespace Connection.Core
     public class RoutePackage
     {
         public AdjacencyMatrix matrix;
-        public Node[] reference;
+        public Route reference;
 
         public RoutePackage(AdjacencyMatrix matrix, Node[] reference)
         {
             this.matrix = matrix;
-            this.reference = reference;
+            this.reference = new Route(reference);
         }
 
         public RoutePackage(int size)
         {
             matrix = new AdjacencyMatrix(size);
-            reference = new Node[size];
-            for (int i = 0; i < size; i++)
-            {
-                reference[i] = new Node(i);
-            }
+            reference = new Route(size);
         }
+
 
     }
 

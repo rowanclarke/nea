@@ -5,6 +5,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Protos\distributor.proto" />
+    </ItemGroup>
+
+    <ItemGroup>
 		<PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
         <PackageReference Include="Google.Protobuf" Version="3.14.0" />
         <PackageReference Include="Grpc.Net.Client" Version="2.33.1" />
@@ -15,7 +19,8 @@
     </ItemGroup>
 
 	<ItemGroup>
-		<Protobuf Include="Protos\connection.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\distributor.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\worker.proto" GrpcServices="Both" />
 	</ItemGroup>
 	
 </Project>

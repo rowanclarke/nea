@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+option csharp_namespace = "Connection.Proto.Distributor";
+
+package proto;
+
+service Distributor {
+	rpc GetGeoRoute (RoutePackage) returns (GeoRoute);
+}
+
+message GeoRoute {
+	required bytes data = 1;
+}
+
+message RoutePackage {
+	required bytes data = 1;
+}

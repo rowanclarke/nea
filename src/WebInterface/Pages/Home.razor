@@ -1,0 +1,86 @@
+﻿@page "/"
+@using System.Drawing
+@using BlazorLeaflet
+@using BlazorLeaflet.Models
+@using BlazorLeaflet.Models.Events
+@inject IJSRuntime jsRuntime
+
+<div class="my-content">
+    <input id="type" type="checkbox" class="toggle z-front" @bind-value="type">
+
+    <button id="submit" class="btn btn-success z-front" @onclick="Submit">Submit</button>
+
+    <div class="my-map">
+        <LeafletMap Map="_map" />
+    </div>
+
+</div>
+
+
+@code
+{ 
+    private Map _map;
+    private bool type;
+    private List<Core.Node> nodes = new List<Core.Node>();
+    private int count = 0;
+
+    protected void Submit()
+    {
+
+        RemoteDistributor distributor = new RemoteDistributor();
+
+        Core.RoutePackage routePackage = new Core.RoutePackage(null, nodes.ToArray());
+        Core.GeoRoute geoRoute = distributor.GetGeoRoute(routePackage);
+
+        Polyline polyline = new Polyline();
+        int length = geoRoute.geometry.GetLength(0);
+
+        polyline.Shape = new PointF[1][];
+
+        polyline.Shape[0] = new PointF[length];
+        
+        for (int i = 0; i < length; i++)
+        {
+            polyline.Shape[0][i] = new PointF(geoRoute.geometry[i, 1], geoRoute.geometry[i, 0]);
+        }
+
+        _map.AddLayer(polyline);
+        
+    }
+
+    protected override void OnInitialized()
+    {
+        _map = new Map(jsRuntime)
+        {
+            Center = new LatLng(51.509865f, -0.118092f),
+            Zoom = 5f
+        };
+
+        _map.OnInitialized += () =>
+        {
+            _map.AddLayer(new TileLayer
+            {
+                UrlTemplate = "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                Attribution = "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors",
+            });
+
+        };
+
+        _map.OnClick += (Map map, MouseEvent e) =>
+        {
+
+            var marker = new Marker(e.LatLng.Lat, e.LatLng.Lng);
+            nodes.Add(new Core.Node(count, Core.Type.CUSTOMER, new Core.Coordinate(e.LatLng.Lng, e.LatLng.Lat)));
+            count++;
+            marker.RiseOnHover = true;
+            marker.OnDblClick += (InteractiveLayer _, MouseEvent __) =>
+            {
+                _map.RemoveLayer(marker);
+            };
+            marker.Icon = new Icon { Url = (type) ? "images/redpin.svg" : "images/bluepin.svg", Size = new Size(27, 32), Anchor = new Point(27 / 2, 32)};
+
+            // Add it to the layers collection
+            _map.AddLayer(marker);
+        };
+    }
+}
