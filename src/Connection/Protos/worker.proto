@@ -5,14 +5,14 @@ option csharp_namespace = "Connection.Proto.Worker";
 package proto;
 
 service Worker {
-	rpc GetRouteSubgraph (RoutePackage) returns (Route);
+	rpc GetRouteSubgraph (ConnectedGraph) returns (Route);
 }
 
 message Route {
 	required bytes data = 1;
 }
 
-message RoutePackage {
+message ConnectedGraph {
 	required bytes data = 1;
 }
 

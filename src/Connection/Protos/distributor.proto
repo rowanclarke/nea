@@ -5,13 +5,18 @@ option csharp_namespace = "Connection.Proto.Distributor";
 package proto;
 
 service Distributor {
-	rpc GetGeoRoute (RoutePackage) returns (GeoRoute);
+	rpc GetRoute (ConnectedGraph) returns (Route);
+	rpc GetLowerBound (ConnectedGraph) returns (LowerBound);
 }
 
-message GeoRoute {
+message Route {
 	required bytes data = 1;
 }
 
-message RoutePackage {
+message LowerBound {
+	required float lower = 1;
+}
+
+message ConnectedGraph {
 	required bytes data = 1;
 }

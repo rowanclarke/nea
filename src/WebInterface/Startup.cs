@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Connection;
 
 namespace WebInterface
 {
@@ -25,9 +26,11 @@ namespace WebInterface
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            Console.WriteLine("Config Startup");
+
+            services.AddSingleton<WebService>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,8 +8,9 @@ namespace Connection.Core
     public class Route
     {
         public Node[] nodes;
-        public double cost;
-        
+
+        public int Length { get => nodes.Length; }
+
         public Route(int size)
         {
             nodes = new Node[size];
@@ -18,7 +19,6 @@ namespace Connection.Core
         public Route(Node[] nodes)
         {
             this.nodes = nodes;
-            Shuffle();
         }
 
         public Node this[int a]
@@ -63,9 +63,9 @@ namespace Connection.Core
             {
                 sb.Append(nodes[i].index + " ");
             }
-            sb.Append("\nCost: ").Append(cost);
             return sb.ToString();
         }
+
 
         public string Locations()
         {
@@ -81,5 +81,6 @@ namespace Connection.Core
             sb.Append("]");
             return sb.ToString();
         }
+
     }
 }

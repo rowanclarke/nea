@@ -5,14 +5,12 @@ using System.Text;
 namespace Connection.Core
 {
     [Serializable]
-    public class GeoRoute
+    public class Geometry
     {
-        public Route route;
         public float[,] geometry;
 
-        public GeoRoute(Route route, float[,] geometry)
+        public Geometry(float[,] geometry)
         {
-            this.route = route;
             this.geometry = geometry;
         }
     }

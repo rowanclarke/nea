@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Connection
 {
     public interface IDistributor
     {
-        // public Core.Route GetRoute(Core.RoutePackage task);
+        public Task<Core.Route> GetRoute(Core.ConnectedGraph task);
 
-        public Core.GeoRoute GetGeoRoute(Core.RoutePackage task);
+        public Task<float> GetLowerBound(Core.ConnectedGraph task);
     }
 }

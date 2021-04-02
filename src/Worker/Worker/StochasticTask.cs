@@ -8,13 +8,15 @@ namespace Worker
         private AdjacencyMatrix matrix;
         private int size;
         public Route route;
-        
-        public double cost = double.PositiveInfinity;
 
-        public StochasticTask(RoutePackage task)
+        public double cost;
+        public double min = double.PositiveInfinity;
+
+        public StochasticTask(ConnectedGraph task)
         {
             matrix = task.matrix;
-            route = task.reference;
+            route = new Route(task.nodes);
+            route.Shuffle();
             size = route.nodes.Length;
         }
 
@@ -24,28 +26,28 @@ namespace Worker
             while (i < iters)
             {
                 (int a, int b) = route.Flip();
-                calculateCost();
-                if (route.cost < cost)
+                CalculateCost();
+                if (cost < min)
                 {   
-                    cost = route.cost;
-                    Console.WriteLine(cost);
+                    min = cost;
+                    Console.WriteLine(min);
                     i = 0;
                 }
                 else
                 {
                     route.Flip(a, b);
-                    route.cost = cost;
+                    cost = min;
                 }
                 i++;
             }
         }
 
-        public void calculateCost()
+        public void CalculateCost()
         {
-            route.cost = 0;
+            cost = 0;
             for (int i = 0; i < size - 1; i++)
             {
-                route.cost += matrix[route[i].index, route[i + 1].index];
+                cost += matrix[route[i].index, route[i + 1].index];
             }
         }
 

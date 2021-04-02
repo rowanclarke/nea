@@ -11,20 +11,40 @@ using Google.Protobuf;
 
 namespace Connection
 {
-    public class RemoteDistributor : IDistributor
+    public class RemoteDistributor : IDistributor, IDisposable
     {
-        public Core.GeoRoute GetGeoRoute(Core.RoutePackage task)
+        // Client (WebInterface) Side
+
+        public GrpcChannel channel;
+        public Proto.Distributor.Distributor.DistributorClient client;
+
+        public RemoteDistributor()
         {
-            // Client (WebInterface) Side
+            channel = GrpcChannel.ForAddress("https://localhost:5002");
+            client = new Proto.Distributor.Distributor.DistributorClient(channel);
+        }
 
-            var channel = GrpcChannel.ForAddress("https://localhost:5002");
-            var client = new Proto.Distributor.Distributor.DistributorClient(channel);
+        public async Task<Core.Route> GetRoute(Core.ConnectedGraph task)
+        {
+            Proto.Distributor.ConnectedGraph package = new Proto.Distributor.ConnectedGraph { Data = Serialiser.Serialise(task) };
 
-            Proto.Distributor.RoutePackage package = new Proto.Distributor.RoutePackage { Data = Serialiser.Serialise(task) }; 
-            
-            var result = client.GetGeoRoute(package);
+            var result = await client.GetRouteAsync(package);
 
-            return (Core.GeoRoute) Serialiser.Deserialise(result.Data);
+            return (Core.Route) Serialiser.Deserialise(result.Data);
+        }
+
+        public async Task<float> GetLowerBound(Core.ConnectedGraph task)
+        {
+            Proto.Distributor.ConnectedGraph package = new Proto.Distributor.ConnectedGraph { Data = Serialiser.Serialise(task) };
+
+            var result = await client.GetLowerBoundAsync(package);
+
+            return result.Lower;
+        }
+
+        public void Dispose()
+        {
+            channel.Dispose();
         }
     }
 }
