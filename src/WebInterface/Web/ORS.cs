@@ -18,14 +18,15 @@ namespace WebInterface
 
         public static async Task<MatrixResponse> GetAdjacencyMatrixAsync(Core.Route route)
         {
-            string responseString = await UseORS("/v2/matrix/driving-car", $"{{\"locations\":{route.Locations()},\"metrics\":[\"duration\"],\"units\":\"km\"}}");
+            string responseString = await UseORS("/v2/matrix/driving-car", $"{{\"locations\":{route.Locations(route.Length - 1, route.Length - 1)},\"metrics\":[\"duration\"],\"units\":\"km\"}}");
             MatrixResponse responseData = JsonSerializer.Deserialize<MatrixResponse>(responseString);
             return responseData;
         }
 
         public static async Task<DirectionResponse> GetGeometryAsync(Core.Route route)
         {
-            string responseString = await UseORS("/v2/directions/driving-car/geojson", $"{{\"coordinates\":{route.Locations()},\"instructions\":\"false\"}}");
+            
+            string responseString = await UseORS("/v2/directions/driving-car/geojson", $"{{\"coordinates\":{route.Locations(route.Length, 0)},\"instructions\":\"false\"}}");
             DirectionResponse responseData = JsonSerializer.Deserialize<DirectionResponse>(responseString);
             return responseData;
         }

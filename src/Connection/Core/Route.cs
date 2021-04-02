@@ -66,21 +66,21 @@ namespace Connection.Core
             return sb.ToString();
         }
 
-
-        public string Locations()
+        public string Locations(int to, int final)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
-            for (int i = 0; i < nodes.Length - 1; i++)
+            for (int i = 0; i < to; i++)
             {
                 sb.Append("[").Append(nodes[i].coord.longitude);
                 sb.Append(",").Append(nodes[i].coord.latitude).Append("],");
             }
-            sb.Append("[").Append(nodes[^1].coord.longitude);
-            sb.Append(",").Append(nodes[^1].coord.latitude).Append("]");
+            sb.Append("[").Append(nodes[final].coord.longitude);
+            sb.Append(",").Append(nodes[final].coord.latitude).Append("]");
             sb.Append("]");
             return sb.ToString();
         }
+
 
     }
 }
